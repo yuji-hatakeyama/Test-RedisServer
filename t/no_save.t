@@ -15,7 +15,7 @@ subtest 'stop does not block when tmpdir is removed before stop' => sub {
     ok $server->pid, 'pid ok';
 
     remove_tree($tmpdir);
-    ok ! -f $tmpdir;
+    ok ! -d $tmpdir;
 
     $server->stop;
     pass 'redis exit ok';
