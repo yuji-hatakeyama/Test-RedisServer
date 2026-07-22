@@ -118,7 +118,7 @@ sub start {
             }
         }
 
-        sleep $elapsed += 0.1;
+        sleep($elapsed += 0.1);
     }
 
     unless ($ready) {
