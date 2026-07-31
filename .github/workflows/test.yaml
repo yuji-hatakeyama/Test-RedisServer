@@ -2,24 +2,49 @@ name: test
 on:
   push:
     branches:
-    - "**"
+      - "**"
   pull_request: {}
 jobs:
   test:
-    name: Run Test with Perl ${{ matrix.perl }}
+    name: Run Test with Perl ${{ matrix.perl }} and ${{ matrix.redis }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         perl:
-          - '5.32'
-          - '5.34'
+          - "5.32"
+          - "5.34"
+          - "5.36"
+          - "5.38"
+          - "5.40"
+          - "5.42"
+          - "5.44"
+        redis:
+          - "redis-6.2"
+          - "redis-7.2"
+          - "redis-7.4"
+          - "redis-8.0"
+          - "redis-8.2"
+          - "redis-8.4"
+          - "redis-8.6"
+          - "redis-8.8"
+          - "redis-8.10"
+          - "valkey-7.2"
+          - "valkey-8.0"
+          - "valkey-8.1"
+          - "valkey-9.0"
+          - "valkey-9.1"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Setup perl
         uses: shogo82148/actions-setup-perl@3d3cb73ca65d657a809d97eab324d4e4f140bf5e # v1.42.0
         with:
           perl-version: ${{ matrix.perl }}
+      - name: Setup redis
+        uses: shogo82148/actions-setup-redis@v1
+        with:
+          redis-version: ${{ matrix.redis }}
+          auto-start: false
       - run: |
           cpanm --quiet --installdeps --notest --with-recommends .
           perl Build.PL && ./Build build && ./Build test
