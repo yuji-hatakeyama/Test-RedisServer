@@ -2,38 +2,38 @@ name: test
 on:
   push:
     branches:
-    - "**"
+      - "**"
   pull_request: {}
 jobs:
   test:
-    name: Run Test with Perl ${{ matrix.perl }} and Redis ${{ matrix.redis }}
+    name: Run Test with Perl ${{ matrix.perl }} and ${{ matrix.redis }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         perl:
-          - '5.32'
-          - '5.34'
-          - '5.36'
-          - '5.38'
-          - '5.40'
-          - '5.42'
-          - '5.44'
+          - "5.32"
+          - "5.34"
+          - "5.36"
+          - "5.38"
+          - "5.40"
+          - "5.42"
+          - "5.44"
         redis:
-          - '6.2'
-          - '7.2'
-          - '7.4'
-          - '8.0'
-          - '8.2'
-          - '8.4'
-          - '8.6'
-          - '8.8'
-          - '8.10'
-          - 'valkey-7.2'
-          - 'valkey-8.0'
-          - 'valkey-8.1'
-          - 'valkey-9.0'
-          - 'valkey-9.1'
+          - "redis-6.2"
+          - "redis-7.2"
+          - "redis-7.4"
+          - "redis-8.0"
+          - "redis-8.2"
+          - "redis-8.4"
+          - "redis-8.6"
+          - "redis-8.8"
+          - "redis-8.10"
+          - "valkey-7.2"
+          - "valkey-8.0"
+          - "valkey-8.1"
+          - "valkey-9.0"
+          - "valkey-9.1"
     steps:
       - uses: actions/checkout@v2
       - name: Setup perl
