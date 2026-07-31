@@ -44,6 +44,7 @@ jobs:
         uses: shogo82148/actions-setup-redis@v1
         with:
           redis-version: ${{ matrix.redis }}
+          auto-start: false
       - run: |
           cpanm --quiet --installdeps --notest --with-recommends .
           perl Build.PL && ./Build build && ./Build test
