@@ -6,7 +6,7 @@ on:
   pull_request: {}
 jobs:
   test:
-    name: Run Test with Perl ${{ matrix.perl }}
+    name: Run Test with Perl ${{ matrix.perl }} and Redis ${{ matrix.redis }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
