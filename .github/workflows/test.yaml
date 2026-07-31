@@ -40,6 +40,10 @@ jobs:
         uses: shogo82148/actions-setup-perl@v1
         with:
           perl-version: ${{ matrix.perl }}
+      - name: Setup redis
+        uses: shogo82148/actions-setup-redis@v1
+        with:
+          redis-version: ${{ matrix.redis }}
       - run: |
           cpanm --quiet --installdeps --notest --with-recommends .
           perl Build.PL && ./Build build && ./Build test
